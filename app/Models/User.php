@@ -18,6 +18,8 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    public $incrementing = false;
+    protected $keyType = 'uuid';
     protected $fillable = [
         'name',
         'email',
