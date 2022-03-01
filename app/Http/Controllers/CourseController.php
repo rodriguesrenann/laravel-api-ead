@@ -3,22 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CourseResource;
-use App\Models\Course;
+use App\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+    private CourseRepository $repository;
+
+    public function __construct(CourseRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
-        $courses = Course::all();
-
-        return CourseResource::collection($courses);
+        return CourseResource::collection($this->repository->getAllCourses());
     }
 
     public function show($id)
     {
-        $course = Course::findOrFail($id);
-
-        return new CourseResource($course);
+        return new CourseResource($this->repository->getCourse($id));
     }
 }
