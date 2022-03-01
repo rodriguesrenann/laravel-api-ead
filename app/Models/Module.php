@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class Course extends Model
+class Module extends Model
 {
     use HasFactory, UuidTrait;
 
@@ -15,12 +15,8 @@ class Course extends Model
 
     protected $keyType = 'uuid';
 
-    protected $fillable = [
-        'name', 'description', 'image'
-    ];
-
-    public function modules(): Relation
+    public function course(): Relation
     {
-        return $this->hasMany(Module::class);
+        return $this->belongsTo(Course::class);
     }
 }
