@@ -24,6 +24,10 @@ class SupportRepository
                     $query->where('status', $filters['status']);
                 }
 
+                if (isset($filters['lesson'])) {
+                    $query->where('lesson_id', $filters['lesson']);
+                }
+
                 if (isset($filters['title'])) {
                     $query->where('title', 'LIKE', "%{$filters['title']}%");
                 }
