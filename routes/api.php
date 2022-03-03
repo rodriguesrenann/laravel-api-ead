@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\{CourseController, LessonController, ModuleController};
+use App\Http\Controllers\Api\{CourseController, LessonController, ModuleController, SupportController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +9,7 @@ Route::get('/courses/{course}', [CourseController::class, 'show']);
 Route::get('/courses/{id}/modules', [ModuleController::class, 'index']);
 Route::get('/modules/{id}/lessons', [LessonController::class, 'index']);
 Route::get('/lessons/{id}', [LessonController::class, 'show']);
+Route::get('/supports', [SupportController::class, 'index']);
 
 Route::get('/', function () {
     return response()->json([

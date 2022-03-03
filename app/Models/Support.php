@@ -6,7 +6,7 @@ use App\Models\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lesson extends Model
+class Support extends Model
 {
     use HasFactory, UuidTrait;
 
@@ -14,10 +14,14 @@ class Lesson extends Model
 
     protected $keyType = 'uuid';
 
-    protected $fillable = ['name', 'description', 'video'];
+    public $supportOptions = [
+        'P' => 'Pendente, aguardando professor',
+        'A' => 'Aguardando aluno',
+        'F' => 'Finalizado'
+    ];
 
-    public function supports()
+    public function user()
     {
-        return $this->hasMany(Support::class);
+        return $this->belongsTo(User::class);
     }
 }
