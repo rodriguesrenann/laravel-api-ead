@@ -18,7 +18,9 @@ class SupportResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'status' => $this->status,
-            'label' => $this->supportOptions[$this->status]
+            'label' => $this->supportOptions[$this->status],
+            'lesson' => new LessonResource($this->lesson),
+            'user' => new UserResource($this->user)
         ];
     }
 }
