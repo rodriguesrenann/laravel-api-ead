@@ -18,10 +18,16 @@ class SupportRepository
         $this->model = $model;
     }
 
+    public function getMySupports(array $filters = []): Collection
+    {
+        $filters['user'] = true;
+
+        return $this->getAll($filters);
+    }
+
     public function getAll(array $filters = []): Collection
     {
-        return $this->getUser()
-            ->supports()
+        return $this->model
             ->where(function ($query) use ($filters) {
                 if (isset($filters['status'])) {
                     $query->where('status', $filters['status']);
@@ -34,7 +40,13 @@ class SupportRepository
                 if (isset($filters['title'])) {
                     $query->where('title', 'LIKE', "%{$filters['title']}%");
                 }
+
+                if (isset($filters['user'])) {
+                    $user = $this->getUser();
+                    $query->where('user_id', $user->id);
+                }
             })
+            ->orderBy('updated_at')
             ->get();
     }
 
@@ -49,6 +61,4 @@ class SupportRepository
                 'status' => $data['status']
             ]);
     }
-
-    
 }
