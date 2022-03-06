@@ -18,6 +18,6 @@ class ModuleController extends Controller
 
     public function index($id)
     {
-        return ModuleResource::collection($this->repository->getModulesByCourseId($id));
+        return ModuleResource::collection($this->repository->findById($id));
     }
 }

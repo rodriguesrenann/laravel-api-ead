@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Resources\SupportCollection;
 use App\Http\Resources\SupportResource;
 use App\Repositories\SupportRepository;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class SupportController extends Controller
+class SupportController extends BaseController
 {
-    private SupportRepository $repository;
-
+    
     public function __construct(SupportRepository $repository)
     {
-        $this->repository = $repository;
+        $this->modelRepository = $repository;
+        $this->modelResource = SupportResource::class;
+        $this->modelCollection = SupportCollection::class;
     }
 
-    public function index(Request $request): AnonymousResourceCollection
-    {
-       return SupportResource::collection($this->repository->getAllTickets($request->all()));
-    }
 
 }

@@ -6,16 +6,14 @@ use App\Models\Support;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
-class SupportRepository
+class SupportRepository extends BaseRepository
 {
-    private Support $model;
-
     public function __construct(Support $model)
     {
         $this->model = $model;
     }
 
-    public function getAllTickets(array $filters = []): Collection
+    public function getAll(array $filters = []): Collection
     {
         return $this->getUser()
             ->supports()

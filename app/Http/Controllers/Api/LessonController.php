@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LessonCollection;
 use App\Http\Resources\LessonResource;
 use App\Repositories\LessonRepository;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class LessonController extends Controller
 {
@@ -16,13 +16,13 @@ class LessonController extends Controller
         $this->repository = $repository;
     }
 
-    public function index($id): AnonymousResourceCollection
+    public function index($id): LessonCollection
     {
-        return LessonResource::collection($this->repository->getAllLessons($id));
+        return new LessonCollection($this->repository->getAll($id));
     }
 
     public function show($id): LessonResource
     {
-        return new LessonResource($this->repository->getLesson($id));
+        return new LessonResource($this->repository->findById($id));
     }
 }
