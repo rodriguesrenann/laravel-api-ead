@@ -13,6 +13,11 @@ class ModuleRepository extends BaseRepository
         $this->model = $model;
     }
 
+    public function getAll($id = null)
+    {
+        
+    }
+    
     public function findById($id): Collection
     {
         return $this->model->where('course_id', $id)->get();

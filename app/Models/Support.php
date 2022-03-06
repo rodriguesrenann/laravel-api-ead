@@ -12,6 +12,11 @@ class Support extends Model
 
     public $incrementing = false;
 
+    protected $fillable = [
+        'lesson_id', 'title', 'description',
+        'status'
+    ];
+
     protected $keyType = 'uuid';
 
     public $supportOptions = [

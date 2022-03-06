@@ -6,8 +6,10 @@ use App\Models\Support;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
-class SupportRepository extends BaseRepository
+class SupportRepository
 {
+    protected $model;
+
     public function __construct(Support $model)
     {
         $this->model = $model;
@@ -31,6 +33,18 @@ class SupportRepository extends BaseRepository
                 }
             })
             ->get();
+    }
+
+    public function store(array $data): Support
+    {
+        return $this->getUser()
+            ->supports()
+            ->create([
+                'lesson_id' => $data['lesson_id'],
+                'title' => $data['title'],
+                'description' => $data['description'],
+                'status' => $data['status']
+            ]);
     }
 
     private function getUser(): User
