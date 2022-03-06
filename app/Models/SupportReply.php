@@ -16,6 +16,8 @@ class SupportReply extends Model
 
     protected $fillable = ['lesson_id', 'reply', 'user_id'];
 
+    protected $touches = ['support'];
+
     public function support()
     {
         return $this->belongsTo(Support::class);
