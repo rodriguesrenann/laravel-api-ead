@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Module;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class ModuleRepository extends BaseRepository
 {
@@ -13,11 +12,6 @@ class ModuleRepository extends BaseRepository
         $this->model = $model;
     }
 
-    public function getAll($id = null)
-    {
-        
-    }
-    
     public function findById($id): Collection
     {
         return $this->model->where('course_id', $id)->get();
