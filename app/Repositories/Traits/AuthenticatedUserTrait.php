@@ -7,6 +7,6 @@ trait AuthenticatedUserTrait
 {
     public function getUser(): User
     {
-        return User::first();
+        return auth()->user();
     }
 }
