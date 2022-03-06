@@ -14,7 +14,7 @@ class BaseController extends Controller
     public function index()
     {
         $resources = $this->modelRepository->getAll(request()->all());
-
+        
         return response()->json([
             'resources' => new $this->modelCollection($resources)
         ]);
