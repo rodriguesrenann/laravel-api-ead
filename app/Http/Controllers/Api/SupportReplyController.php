@@ -18,8 +18,8 @@ class SupportReplyController extends BaseController
         $this->modelRepository = $repository;
     }
 
-    public function store(SupportReplyRequest $request, $supportId)
+    public function store(SupportReplyRequest $request)
     {
-        return new $this->modelResource($this->modelRepository->store($supportId, $request->validated()));
+        return new $this->modelResource($this->modelRepository->store($request->validated()));
     }
 }

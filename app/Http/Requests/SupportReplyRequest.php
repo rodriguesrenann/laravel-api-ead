@@ -24,7 +24,8 @@ class SupportReplyRequest extends FormRequest
     public function rules()
     {
         return [
-            'reply' => 'required|min:4|max:10000'
+            'reply' => 'required|min:4|max:10000',
+            'support_id' => 'required|exists:supports,id'
         ];
     }
 }

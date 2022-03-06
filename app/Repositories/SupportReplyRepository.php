@@ -5,9 +5,12 @@ namespace App\Repositories;
 use App\Models\Support;
 use App\Models\SupportReply;
 use App\Models\User;
+use App\Repositories\Traits\AuthenticatedUserTrait;
 
 class SupportReplyRepository
 {
+    use AuthenticatedUserTrait;
+
     protected $model;
 
     public function __construct(SupportReply $model)
@@ -22,25 +25,14 @@ class SupportReplyRepository
             ->get();
     }
 
-    public function store(string $supportId, array $data)
+    public function store(array $data)
     {
         $user = $this->getUser();
         
-        return $this->getSupport($supportId)
-            ->replies()
-            ->create([
-                'user_id' => $user->id,
-                'reply' => $data['reply']
-            ]);
-    }
-
-    private function getSupport($id)
-    {
-        return Support::findOrFail($id);
-    }
-
-    private function getUser(): User
-    {
-        return User::first();
+        return $this->model->create([
+            'support_id' => $data['support_id'],
+            'user_id' => $user->id,
+            'reply' => $data['reply']
+        ]);
     }
 }

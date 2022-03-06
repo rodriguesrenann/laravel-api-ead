@@ -10,7 +10,7 @@ Route::get('/modules/{id}/lessons', [LessonController::class, 'index']);
 Route::get('/lessons/{id}', [LessonController::class, 'show']);
 Route::get('/supports', [SupportController::class, 'index']);
 Route::post('/supports', [SupportController::class, 'store']);
-Route::post('/supports/{id}', [SupportReplyController::class, 'store']);
+Route::post('/replies', [SupportReplyController::class, 'store']);
 Route::get('/myreplies', [SupportReplyController::class, 'index']);
 
 Route::get('/', function () {

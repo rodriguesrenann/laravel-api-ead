@@ -14,7 +14,7 @@ class SupportReply extends Model
 
     protected $keyType = 'uuid';
 
-    protected $fillable = ['lesson_id', 'reply', 'user_id'];
+    protected $fillable = ['lesson_id', 'reply', 'user_id', 'support_id'];
 
     protected $touches = ['support'];
 

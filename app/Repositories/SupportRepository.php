@@ -4,10 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Support;
 use App\Models\User;
+use App\Repositories\Traits\AuthenticatedUserTrait;
 use Illuminate\Database\Eloquent\Collection;
 
 class SupportRepository
 {
+    use AuthenticatedUserTrait;
+
     protected $model;
 
     public function __construct(Support $model)
@@ -47,8 +50,5 @@ class SupportRepository
             ]);
     }
 
-    private function getUser(): User
-    {
-        return User::first();
-    }
+    
 }
